@@ -1,0 +1,179 @@
+{% extends "testhtml.html" %}
+
+{% block content %}
+
+  <form  method="post" class="ui form">{% csrf_token %}
+	
+	<div class="field">
+		<h1>Curriculum</h1>
+	</div>
+  
+	<div class="field">
+		<label><h3 class="ui dividing header">Batch</h3></label>
+		<input type="number" name="batch" class="four wide field">
+	</div>
+	
+	<div class="field">
+		<label><h3 class="ui dividing header">Programme</h3></label>
+		<select name="programme" id="programme" class="ui fluid dropdown four wide field">
+			<option value="BTech">B.Tech</option>
+			<option value="BDes">B.Des</option>
+			<option value="MDes">M.Des</option>
+			<option value="MTech">M.Tech</option>
+			<option value="Phd">PhD</option>
+		</select>
+	</div>
+	
+	<div class="field">
+		<label class="ui fluid dropdown"><h3>Semester</h3></label>
+		<select  name="semester" class="four wide field">
+		  <option value="all">all</option>
+		  <option value="1">1</option>
+		  <option value="2">2</option>
+		  <option value="3">3</option>
+		  <option value="4">4</option>
+		  <option value="5">5</option>
+		  <option value="6">6</option>
+		  <option value="7">7</option>
+		  <option value="8">8</option>
+		</select>
+	</div>
+	
+	<div>
+		<button type="submit" name="button" class="ui primary button">View Curriculum</button>
+	</div>
+
+  </form>
+
+
+  <div class="curriculum">
+
+    {% if tab == '1' %}
+    {% for course in semester1  %}
+      <p>Course id :  {{course.course_id}}
+      Course type :  {{course.course_type}}
+    Course credits :  {{course.course_credits}}</p>
+
+    {% endfor %}
+    {% endif %}
+
+    {% if tab == '2' %}
+    {% for course in semester2  %}
+      <p>Course id :  {{course.course_id}}
+      Course type :  {{course.course_type}}
+      Course credits :  {{course.course_credits}}</p>
+    {% endfor %}
+    {% endif %}
+
+    {% if tab == '3' %}
+    {% for course in semester3  %}
+      <p>Course id :  {{course.course_id}}
+      Course type :  {{course.course_type}}
+      Course credits :  {{course.course_credits}}</p>
+    {% endfor %}
+    {% endif %}
+
+    {% if tab == '4' %}
+    {% for course in semester4  %}
+      <p>Course id :  {{course.course_id}}
+    Course type :  {{course.course_type}}
+      Course credits :  {{course.course_credits}}</p>
+    {% endfor %}
+    {% endif %}
+
+    {% if tab == '5' %}
+    {% for course in semester5  %}
+      <p>Course id :  {{course.course_id}}
+    Course type :  {{course.course_type}}
+      Course credits :  {{course.course_credits}}</p>
+    {% endfor %}
+    {% endif %}
+
+    {% if tab == '6' %}
+    {% for course in semester6  %}
+      <p>Course id :  {{course.course_id}}
+      Course type :  {{course.course_type}}
+      Course credits :  {{course.course_credits}}</p>
+    {% endfor %}
+    {% endif %}
+
+    {% if tab == '7' %}
+    {% for course in semester7  %}
+      <p>Course id :  {{course.course_id}}
+      Course type :  {{course.course_type}}
+      Course credits :  {{course.course_credits}}</p>
+    {% endfor %}
+    {% endif %}
+
+    {% if tab == '8' %}
+    {% for course in semester8  %}
+      <p>Course id :  {{course.course_id}}
+      Course type :  {{course.course_type}}
+      Course credits :  {{course.course_credits}}</p>
+    {% endfor %}
+    {% endif %}
+
+    {% if tab == '9' %}
+    <h1>Semester 1</h1>
+    {% for course in semester1  %}
+      <p>Course id :  {{course.course_id}}
+      Course type :  {{course.course_type}}
+    Course credits :  {{course.course_credits}}
+  Course name : {{course.curr_course}}</p>
+    {% endfor %}
+
+    <h1>Semester 2</h1>
+    {% for course in semester2  %}
+      <p>Course id :  {{course.course_id}}
+      Course type :  {{course.course_type}}
+    Course credits :  {{course.course_credits}}</p>
+    {% endfor %}
+
+      <h1>Semester 3</h1>
+    {% for course in semester3  %}
+      <p>Course id :  {{course.course_id}}
+      Course type :  {{course.course_type}}
+    Course credits :  {{course.course_credits}}</p>
+    {% endfor %}
+
+    <h1>Semester 4</h1>
+    {% for course in semester4  %}
+      <p>Course id :  {{course.course_id}}
+      Course type :  {{course.course_type}}
+    Course credits :  {{course.course_credits}}</p>
+    {% endfor %}
+
+    <h1>Semester 5</h1>
+    {% for course in semester5  %}
+      <p>Course id :  {{course.course_id}}
+      Course type :  {{course.course_type}}
+      Course credits :  {{course.course_credits}}</p>
+    {% endfor %}
+
+    <h1>Semester 6</h1>
+    {% for course in semester6  %}
+      <p>Course id :  {{course.course_id}}
+      Course type :  {{course.course_type}}
+      Course credits :  {{course.course_credits}}</p>
+    {% endfor %}
+
+    <h1>Semester 7</h1>
+    {% for course in semester7  %}
+      <p>Course id :  {{course.course_id}}
+      Course type :  {{course.course_type}}
+      Course credits :  {{course.course_credits}}</p>
+    {% endfor %}
+
+    <h1>Semester 8</h1>
+    {% for course in semester8  %}
+      <p>Course id :  {{course.course_id}}
+    Course type :  {{course.course_type}}
+    Course credits :  {{course.course_credits}}</p>
+    {% endfor %}
+    {% endif %}
+
+
+
+  </div>
+
+{% endblock %}

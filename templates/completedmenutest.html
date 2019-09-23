@@ -1,0 +1,40 @@
+{% extends 'testhtml.html' %}
+{% load staticfiles %}
+{% block content %}
+	<div class="ui ordered steps">
+
+		<div class="1 active step">
+			<!-- <i class="truck icon"></i> -->
+		    <div class="content">
+			  	<div class="title">Add Programme</div>
+			    <div class="description">Add the programme</div>
+			</div>
+		</div>
+
+		<div class="2 step">
+			<!-- <i class="truck icon"></i> -->
+		    <div class="content">
+			  	<div class="title">Add Batch</div>
+			    <div class="description">Add the credits of the courses</div>
+			</div>
+		</div>
+		<div class="3 step">
+	    	<!-- <i class="credit card icon"></i> -->
+	    	<div class="content">
+		      	<div class="title">Add Semester</div>
+		      	<div class="description">Add the details of the courses</div>
+	    	</div>
+	  	</div>
+	  	<div class="4 step">
+	    	<!-- <i class="info icon"></i> -->
+	    	<div class="content">
+	      		<div class="title">Add course</div>
+	      		<div class="description">Add the courses to the curriculum</div>
+	    	</div>
+	  	</div>
+	</div>
+	<div>
+		{% include 'programme.html' %}
+	</div>
+
+{% endblock %}

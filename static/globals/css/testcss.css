@@ -1,0 +1,68 @@
+body
+{
+	font-family:Lato;
+}
+
+.formnav
+{
+	margin:1em 1.8em 1em 1.8em;
+	font-weight:normal;
+	border-bottom:1px #DCDCDC solid;
+	text-decoration:none;
+	/*padding:1em 1em .6em 1em;*/
+	overflow:hidden;
+	clear:both;
+}
+
+.formnav a
+{
+	float:left;
+	display:inline;
+	text-decoration:none;
+	padding:.8em;
+}
+
+.formnav a:hover
+{
+	border-bottom:2px #000000 solid;
+	color:#000000;
+	font-weight:600;
+}
+
+.formnav .activeitem
+{
+	border-bottom:2px #000000 solid;
+	color:#000000;
+	font-weight:600;
+}
+
+
+.outerdiv
+{
+	margin:1em;
+	border:1px #D3D3D3 solid;
+	font-weight:normal;
+	font-size:.9em;
+	border-radius:.4em;
+	clear:both;
+	overflow:hidden;
+}
+
+.outerdiv .innerdiv
+{
+	border:1px solid #DCDCDC;
+	border-radius:5px;
+	margin:1rem;
+}
+
+.outerdiv .innerdiv .content
+{
+	margin:.9rem;
+}
+
+.outerdiv .innerdiv .content h3
+{
+	display:block;
+	border-bottom:1px solid #DCDCDC;
+	padding:0 0 2px 0;
+}

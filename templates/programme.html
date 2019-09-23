@@ -1,0 +1,59 @@
+{% extends "testhtml.html" %}
+
+{% block content %}
+
+  <div id="chooseprogram">
+    <form method="post">
+      {% csrf_token %}
+      <div class="fields">
+        <div class="field">
+          <input class="ui input" type="text" name="programme" id="prog"  value=""><br><br>
+        </div>
+
+        <div class="field">
+          <div class="testclass ui primary button" name="button">submit</div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="newdiv">
+
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+  		$('.testclass').on('click',function(e){
+        // alert("one");
+  			var programme = document.getElementById("prog").value;
+        // alert(batch);
+  			$.ajax({
+  				type:"POST",
+  		        url: "/select/",
+  		        data:{
+                programme:programme,
+  		          csrfmiddlewaretoken: '{{ csrf_token }}'
+  		        },
+  		        success: function( data )
+  		        {
+                $('#chooseprogram').hide();
+  		        	$(".newdiv").show();
+  		        	$(".newdiv").html(data.d);
+  		        }
+  			});
+  		});
+  	});
+
+  </script>
+
+  <script type="text/javascript">
+
+    $('.testclass').click(function(){
+        $('.1').addClass('completed');
+        $('.1').removeClass('active');
+        $('.2').addClass('active');
+      });
+  </script>
+
+{% endblock %}

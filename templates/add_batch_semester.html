@@ -1,0 +1,205 @@
+{% extends "testhtml.html" %}
+
+{% load static %}
+
+{% block content %}
+
+  <form id="addbatch" class="batch_semester ui form"  method="post">{% csrf_token %}
+
+	<!-- <div class="field">
+		<h1>Add Batch's Semester</h1>
+	</div> -->
+
+  <input type="text" name="programme" id="prog" value="{{btech.programme}}" hidden="true">
+	<input type="number" name="batch" id="batc" value="{{btech.batch}}" hidden="true">
+
+      <div class="field">
+        <label><h3 class="ui dividing header">Semester</h3></label>
+        <div class="ui input focus three wide field">
+          <input id="sem" type="number" name="semester">
+        </div>
+      </div>
+
+      <div class="field">
+        <label><h3 class="ui dividing header">Total Courses</h3></label>
+        <div class="ui input focus three wide field">
+          <input id="totalCourses" type="number" name="total_number_of_courses">
+        </div>
+      </div>
+
+      <div class="field">
+        <h3 class="ui dividing header">Professional</h3>
+        <div class="fields">
+          <div class="three wide field">
+            <label>Core Courses</label>
+            <div class="ui input focus">
+              <input id="profcore" type="number" name="professional_core_courses">
+            </div>
+          </div>
+
+          <div class="three wide field">
+            <label>Elective Courses</label>
+            <input id="profelective" type="number" name="professional_elective_courses">
+          </div>
+
+          <div class="three wide field">
+            <label >Project Courses</label>
+            <div class="ui input focus">
+              <input id="profproject" type="number" name="professional_project_courses">
+            </div>
+          </div>
+
+          <div class="three wide field">
+            <label>Lab Courses</label>
+            <div class="ui input focus">
+              <input id="proflab" type="number" name="professional_lab_courses">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <h3 class="ui dividing header">Core</h3>
+        <div class="fields">
+          <div class="six wide field">
+            <label>Engineering Science Courses</label>
+            <div class="ui input focus">
+              <input id="es" type="number" name="escourses">
+            </div>
+          </div>
+
+          <div class="six wide field">
+            <label>Natural Science Courses</label>
+            <div class="ui input focus">
+              <input id="ns" type="number" name="nscourses">
+            </div>
+          </div>
+        </div>
+
+        <div class="fields">
+          <div class="six wide field">
+            <label>Humanities Courses</label>
+            <div class="ui input focus">
+              <input id="hs" type="number" name="hscourses">
+            </div>
+          </div>
+
+          <div class="six wide field">
+            <label>Design Courses</label>
+            <div class="ui input focus">
+              <input id="ds" type="number" name="dscourses">
+            </div>
+          </div>
+        </div>
+
+        <div class="fields">
+          <div class="six wide field">
+            <label>Manufacturing Courses</label>
+            <div class="ui input focus">
+              <input id="mn" type="number" name="mncourses">
+            </div>
+          </div>
+
+          <div class="six wide field">
+            <label>Management Science Courses</label>
+            <div class="ui input focus">
+              <input id="ms" type="number" name="mscourses">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label><h3 class="ui dividing header">PBI</h3></label>
+        <select id="pbi" name='pbi' class="ui fluid dropdown">
+          <option value="True">Allowed</option>
+          <option value="False">Not Allowed</option>
+        </select><br><br>
+      </div>
+
+
+
+	<!-- <div class="field">
+		<label><h3 class="ui dividing header">Programme</h3></label>
+		<select name="programme" class="ui fluid dropdown three wide field">
+			<option value="BTech">B.Tech</option>
+			<option value="BDes">B.Des</option>
+			<option value="MDes">M.Des</option>
+			<option value="MTech">M.Tech</option>
+			<option value="Phd">PhD</option>
+		</select>
+	</div> -->
+
+
+  <div class="testclass ui primary button" name="button">add semester</div>
+
+  </form>
+
+  <div class="ndiv">
+
+  </div>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+  		$('.testclass').on('click',function(e){
+        // alert("one");
+        var programme = document.getElementById("prog").value;
+  			var batch = parseInt(document.getElementById("batc").value);
+        var sem = parseInt(document.getElementById("sem").value);
+        var totalcourses = parseInt(document.getElementById("totalCourses").value);
+        var profcore = parseInt(document.getElementById("profcore").value);
+        var profelective = parseInt(document.getElementById("profelective").value);
+        var profproject = parseInt(document.getElementById("profproject").value);
+        var proflab = parseInt(document.getElementById("proflab").value);
+        var es = parseInt(document.getElementById("es").value);
+        var ns = parseInt(document.getElementById("ns").value);
+        var hs = parseInt(document.getElementById("hs").value);
+        var ds = parseInt(document.getElementById("ds").value);
+        var mn = parseInt(document.getElementById("mn").value);
+        var ms = parseInt(document.getElementById("ms").value);
+        // alert(ms);
+        // var pbi = document.getElementById("pbi").value;
+        // alert(pbi);
+  			$.ajax({
+  				type:"POST",
+  		        url: "/add_batch_semester/",
+  		        data:{
+                programme:programme,
+                batch : batch,
+                semester:sem,
+                total_number_of_courses:totalcourses,
+                professional_core_courses:profcore,
+                professional_elective_courses:profelective,
+                professional_project_courses:profproject,
+                professional_lab_courses: proflab,
+                escourses: es,
+                hscourses :hs,
+                dscourses:ds,
+                mncourses :mn,
+                nscourses :ns,
+                mscourses:ms,
+  		          csrfmiddlewaretoken: '{{ csrf_token }}'
+  		        },
+              success: function( data )
+  		        {
+                $('#addbatch').hide();
+  		        	$(".ndiv").show();
+  		        	$(".ndiv").html(data.d);
+  		        }
+  			});
+  		});
+  	});
+
+  </script>
+
+  <script type="text/javascript">
+
+    $('.testclass').click(function(){
+        $('.3').addClass('completed');
+        $('.3').removeClass('active');
+        $('.4').addClass('active');
+      });
+  </script>
+{% endblock %}

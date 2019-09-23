@@ -1,0 +1,206 @@
+{% extends "testhtml.html" %}
+{% load static %}
+{% block content %}
+
+<div>
+    <form id="addcurriculum" class="btech_curriculum ui form" method="post">{% csrf_token %}
+
+      	<div id="addcurr">
+
+            <!-- <div class="field">
+        		<h1>Add Curriculum Credits for B-tech.</h1>
+            </div> -->
+
+          <input type="text" name="programme" id="prog" value="{{programme}}" hidden="true">
+
+        	<!-- <div class="field">
+        		<label class="ui dividing header"><h4>Programme</h4></label>
+        		<select name="programme" class="ui fluid dropdown four wide field">
+        			<option value="BTech">BTech</option>
+        			<option value="BDes">BDes</option>
+        			<option value="MDes">MDes</option>
+        			<option value="MTech">MTech</option>
+        			<option value="PhD">PhD</option>
+        		</select>
+        	</div> -->
+
+        	<div class="field">
+        		<label for="batch" class="ui dividing header"><h4>Batch</h4></label>
+        		<div class="ui input focus four wide field">
+        			<input id="batc" type="number" name="batch" placeholder="Batch">
+        		</div>
+        	</div>
+
+        	<div class="field">
+        		<h4 class="ui dividing header">Professional</h4>
+        		<div class="fields">
+        			<div class="three wide field">
+        				<label for="prof_core_credit">Core</label>
+        				<div class="ui input focus">
+        					<input id="profcorecredit" type="number" name="prof_core_credit" placeholder="Professional Core">
+        				</div>
+        			</div>
+
+        			<div class="three wide field">
+        				<label for="prof_elective_credit">Elective</label>
+        				<div class="ui input focus">
+        					<input id="profelectivecredit" type="number" name="prof_elective_credit" placeholder="Professional Elective">
+        				</div>
+        			</div>
+
+        			<div class="three wide field">
+        				<label for="prof_project_credit">Project </label>
+        				<div class="ui input focus">
+        				<input id="profprojectcredit" type="number" name="prof_project_credit" placeholder="Professional Project">
+        				</div>
+        			</div>
+
+        			<div class="three wide field">
+        				<label for="prof_lab_credit">Lab </label>
+        				<div class="ui input focus">
+        					<input id="proflabcredit" type="number" name="prof_lab_credit" placeholder="Professional Lab">
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+
+        	<div class = "field">
+        		<h4 class="ui dividing header">Core</h4>
+        		<div class="fields">
+        			<div class="six wide field">
+        				<label for="core_engineering_science_credit">Engineering Science</label>
+        				<div class="ui input focus">
+        					<input id="escredit" type="number" name="core_engineering_science_credit" placeholder="Engineering Science">
+        				</div>
+        			</div>
+
+        			<div class="six wide field">
+        				<label for="core_humanities_credit">Humanities</label>
+        				<div class="ui input focus">
+        					<input id="hscredit" type="number" name="core_humanities_credit" placeholder="Humanities">
+        				</div>
+        			</div>
+        		</div>
+
+        		<div class="fields">
+        			<div class="six wide field">
+        				<label for="core_design_credit">Design</label>
+        				<div class="ui input focus">
+        					<input id="dscredit" type="number" name="core_design_credit" placeholder="Design">
+        				</div>
+        			</div>
+
+        			<div class="six wide field">
+        				<label for="core_manufacturing_credit">Manufacturing</label>
+        				<div class="ui input focus">
+        					<input id="mncredit" type="number" name="core_manufacturing_credit" placeholder="Manufacturing">
+        				</div>
+        			</div>
+        		</div>
+
+        		<div class="fields">
+        			<div class="six wide field">
+        				<label for="core_natural_science_credit">Natural Science</label>
+        				<div class="ui input focus">
+        					<input id="nscredit" type="number" name="core_natural_science_credit" placeholder="Natural Science">
+        				</div>
+        			</div>
+
+        			<div class="six wide field">
+        				<label for="core_management_science_credit">Management Science</label>
+        				<div class="ui input focus">
+        					<input id="mscredit" type="number" name="core_management_science_credit" placeholder="Management Science">
+        				</div>
+        			</div>
+        		</div>
+
+        		<div class="field">
+        			<label for="pbi" class="ui dividing header"><h4>PBI</h4></label>
+        			<div class="ui input focus">
+        				<input id="pbi" type="number" name="pbi" placeholder="PBI">
+        			</div>
+        		</div>
+
+        		<div class="field">
+        			<label for="pr" class="ui dividing header"><h4>Optional Project</h4></label>
+        			<div class="ui input focus">
+        				<input id="pr" type="number" name="pr" placeholder="Optional Project">
+        			</div><br><br>
+        		</div>
+
+        			<div class="testclass ui primary button" name="button">add Curriculum</div>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+    <div class="new">
+
+    </div>
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+  		$('.testclass').on('click',function(e){
+        // alert("one");
+        var programme = document.getElementById("prog").value;
+  			var batch = parseInt(document.getElementById("batc").value);
+        var pcorecredit = parseInt(document.getElementById("profcorecredit").value);
+        var pelectivecredit = parseInt(document.getElementById("profelectivecredit").value);
+        var pprojectcredit = parseInt(document.getElementById("profprojectcredit").value);
+        var plabcredit = parseInt(document.getElementById("proflabcredit").value);
+        var escredit = parseInt(document.getElementById("escredit").value);
+        var hscredit = parseInt(document.getElementById("hscredit").value);
+        var dscredit = parseInt(document.getElementById("dscredit").value);
+        var mncredit = parseInt(document.getElementById("mncredit").value);
+        var nscredit = parseInt(document.getElementById("nscredit").value);
+        var mscredit = parseInt(document.getElementById("mscredit").value);
+        var pbi = parseInt(document.getElementById("pbi").value);
+        var pr = parseInt(document.getElementById("pr").value);
+        // alert(plabcredit);
+  			$.ajax({
+  				type:"POST",
+  		        url: "/add_btech_curriculum/",
+  		        data:{
+                programme:programme,
+                batch : batch,
+                prof_core_credit:pcorecredit,
+                prof_elective_credit:pelectivecredit,
+                prof_project_credit:pprojectcredit,
+                prof_lab_credit: plabcredit,
+                core_engineering_science_credit: escredit,
+                core_humanities_credit : hscredit,
+                core_design_credit: dscredit,
+                core_manufacturing_credit :  mncredit,
+                core_natural_science_credit :  nscredit,
+                core_management_science_credit:  mscredit,
+                pbi : pbi,
+                pr : pr,
+  		          csrfmiddlewaretoken: '{{ csrf_token }}'
+  		        },
+              success: function( data )
+  		        {
+                $('#addcurr').hide();
+  		        	$(".new").show();
+  		        	$(".new").html(data.d);
+  		        }
+  			});
+  		});
+  	});
+
+  </script>
+
+  <script type="text/javascript">
+
+    $('.testclass').click(function(){
+        $('.2').addClass('completed');
+        $('.2').removeClass('active');
+        $('.3').addClass('active');
+      });
+  </script>
+{% endblock %}

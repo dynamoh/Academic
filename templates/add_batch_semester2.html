@@ -1,0 +1,32 @@
+{% extends "testhtml.html" %}
+
+{% block content %}
+
+  <form class="batch_semester ui form" method="post">{% csrf_token %}
+
+	<div class="field">
+		<h1>Add Batch's Semester</h1>
+	</div>
+
+	<div class="field">
+		<label><h3 class="ui dividing header">Programme</h3></label>
+		<select name="programme" class="ui fluid dropdown three wide field">
+			<option value="BTech">B.Tech</option>
+			<option value="BDes">B.Des</option>
+			<option value="MDes">M.Des</option>
+			<option value="MTech">M.Tech</option>
+			<option value="Phd">PhD</option>
+		</select>
+	</div>
+
+	<div class="field">
+		<label><h3 class="ui dividing header">Batch</h3></label>
+		<div class="ui input focus three wide field">
+			<input type="number" name="batch">
+		</div>
+	</div>
+
+	
+  </form>
+
+{% endblock %}

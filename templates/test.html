@@ -1,0 +1,112 @@
+
+<form class="batch_semester ui form" method="post">{% csrf_token %}
+
+    <div class="field">
+      <label><h3 class="ui dividing header">Semester</h3></label>
+      <div class="ui input focus three wide field">
+        <input type="number" name="semester">
+      </div>
+    </div>
+
+    <div class="field">
+      <label><h3 class="ui dividing header">Total Courses</h3></label>
+      <div class="ui input focus three wide field">
+        <input type="number" name="total_number_of_courses">
+      </div>
+    </div>
+
+    <div class="field">
+      <h3 class="ui dividing header">Professional</h3>
+      <div class="fields">
+        <div class="three wide field">
+          <label>Core Courses</label>
+          <div class="ui input focus">
+            <input type="number" name="professional_core_courses">
+          </div>
+        </div>
+
+        <div class="three wide field">
+          <label>Elective Courses</label>
+          <input type="number" name="professional_elective_courses">
+        </div>
+
+        <div class="three wide field">
+          <label >Project Courses</label>
+          <div class="ui input focus">
+            <input type="number" name="professional_project_courses">
+          </div>
+        </div>
+
+        <div class="three wide field">
+          <label>Lab Courses</label>
+          <div class="ui input focus">
+            <input type="number" name="professional_lab_courses">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <h3 class="ui dividing header">Core</h3>
+      <div class="fields">
+        <div class="six wide field">
+          <label>Engineering Science Courses</label>
+          <div class="ui input focus">
+            <input type="number" name="escourses">
+          </div>
+        </div>
+
+        <div class="six wide field">
+          <label>Natural Science Courses</label>
+          <div class="ui input focus">
+            <input type="number" name="nscourses">
+          </div>
+        </div>
+      </div>
+
+      <div class="fields">
+        <div class="six wide field">
+          <label>Humanities Courses</label>
+          <div class="ui input focus">
+            <input type="number" name="hscourses">
+          </div>
+        </div>
+
+        <div class="six wide field">
+          <label>Design Courses</label>
+          <div class="ui input focus">
+            <input type="number" name="dscourses">
+          </div>
+        </div>
+      </div>
+
+      <div class="fields">
+        <div class="six wide field">
+          <label>Manufacturing Courses</label>
+          <div class="ui input focus">
+            <input type="number" name="mncourses">
+          </div>
+        </div>
+
+        <div class="six wide field">
+          <label>Management Science Courses</label>
+          <div class="ui input focus">
+            <input type="number" name="mscourses">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label><h3 class="ui dividing header">PBI</h3></label>
+      <select name='pbi' class="ui fluid dropdown">
+        <option value="True">Allowed</option>
+        <option value="False">Not Allowed</option>
+      </select><br><br>
+    </div>
+
+    <div class="field">
+      <button type="submit" name="button" class="ui primary button">Add Courses</button>
+    </div>
+
+</form>

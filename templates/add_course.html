@@ -1,0 +1,29 @@
+{% extends "testhtml.html" %}
+
+{% block content %}
+
+  <form class="add_course ui form" method="post">{% csrf_token %}
+	
+	<div class="field">
+		<h1>Add Course</h1>
+	</div>
+	<div class="field">
+		<label for="course_name">Course Name</label>
+		<div class="ui input focus four wide field">
+			<input type="text" name="course_name" placeholder="Course Name">
+		</div>
+	</div>
+	
+	<div class="field">
+		<label for="course_detail">Course Detail</label>
+		<div class="ui input focus four wide field">
+			<input type="text" name="course_detail" placeholder="Course Detail">
+		</div>
+	</div>
+	
+	<div class="field">
+		<button type="submit" name="button" class="ui primary button">Add Course</button>
+	</div>
+  </form>
+
+{% endblock %}
