@@ -7,7 +7,16 @@
       {% csrf_token %}
       <div class="fields">
         <div class="field">
-          <input class="ui input" type="text" name="programme" id="prog"  value=""><br><br>
+          <div class="six wide field">
+            <label> <h3>Select Programme</h3> </label><br>
+            <select name="programme" id="prog" class="ui fluid dropdown six wide field">
+              <option value="BTECH">BTech</option>
+              <option value="BDES"> BDes</option>
+              <option value="MTech">MTech</option>
+              <option value="MDes">MDes</option>
+              <option value="PhD">PhD</option>
+            </select>
+          </div><br>
         </div>
 
         <div class="field">

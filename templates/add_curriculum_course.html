@@ -1,5 +1,5 @@
 {% extends "testhtml.html" %}
-
+{% load static %}
 {% block content %}
 
   <form method="post" class="ui form">
@@ -10,82 +10,84 @@
 
 	<!-- <div class="field">
 		<label>Semester</label>
-		<div class="ui input focus three wide field">
+		<div class="ui input focus six wide field">
 			<input type="number" name="semester">
 	</div> -->
 
-  <input id="sem" type="number" name="semester" value="{{batch.semester}}" hidden="True" >
-  <input type="number" name="batch" value="{{batch.batch}}" hidden="True">
-  <input id="numberofcourses" type="number" name="batch11" value="{{batch.total_number_of_courses}}" hidden="True" >
+  <input id="semester" type="number" name="semester" value="{{batch.semester}}" hidden="True" >
+  <input type="number" id="batch" name="batch" value="{{batch.batch}}" hidden="True">
+  <input id="numberofcourses" type="number" name="numberofcourses" value="{{batch.total_number_of_courses}}" hidden=>
 
   {% for course in range %}
-    	<div class="field">
-    		<label>Course ID</label>
-    		<div class="ui input focus three wide field">
-    			<input id="cid{{ forloop.counter }}" type="text" name="course_id{{ forloop.counter }}">
-    		</div>
-    	</div>
+
+      	<div class="six wide field">
+      		<label>Course ID</label>
+      		<div class="ui input focus six wide field">
+      			<input id="cid" class="course_id" type="text" name="course_id">
+      		</div>
+      	</div>
 
 
-    	<div class="field">
-    		<label>Course Type</label>
-    		<select id="ctype{{ forloop.counter }}" name="course_type{{ forloop.counter }}" class="ui fluid dropdown three wide field">
-    		  <option value="Core">Professional Core</option>
-    		  <option value="Elective">Professional Elective</option>
-    		  <option value="Lab">Professional Lab</option>
-    		  <option value="Project">Professional Project</option>
-    		  <option value="ES">Engineering Science</option>
-    		  <option value="NS">Natural Science</option>
-    		  <option value="HS">Humanities</option>
-    		  <option value="DS">Design</option>
-    		  <option value="MN">Manufacturing</option>
-    		  <option value="MS">Management Science</option>
-    		</select>
-    	</div>
+      	<div class="six wide field">
+      		<label>Course Type</label>
+      		<select id="ctype" name="course_type" class="course_type ui fluid dropdown six wide field">
+      		  <option value="Core">Professional Core</option>
+      		  <option value="Elective">Professional Elective</option>
+      		  <option value="Lab">Professional Lab</option>
+      		  <option value="Project">Professional Project</option>
+      		  <option value="ES">Engineering Science</option>
+      		  <option value="NS">Natural Science</option>
+      		  <option value="HS">Humanities</option>
+      		  <option value="DS">Design</option>
+      		  <option value="MN">Manufacturing</option>
+      		  <option value="MS">Management Science</option>
+      		</select>
+      	</div>
 
-    	<div class="field">
-    		<label>Course</label>
-    		<select id="cname{{ forloop.counter }}" name="course{{ forloop.counter }}" class="three wide field">
-    		  {% for coursename in course_list %}
-    			<option value="{{coursename.course_name}}">{{coursename.course_name}}</option>
-    		  {% endfor %}
-    		</select>
-    		<!-- <input type="text" name="course"><br><br> -->
-    	</div>
+      	<div class="six wide field">
+      		<label>Course</label>
+      		<select id="cname{{ forloop.counter }}" name="course" class="course six wide field">
+      		  {% for cours in course_list %}
+      			<option value="{{cours.course_name}}">{{cours.course_name}}</option>
+      		  {% endfor %}
+      		</select>
+      		<!-- <input type="text" name="course"><br><br> -->
+      	</div>
 
-    	<div class="field">
-    		<label>Course Credits</label>
-    		<div class="ui input focus three wide field">
-    			<input id="ccredits{{ forloop.counter }}" type="number" name="course_credits{{ forloop.counter }}">
-    		</div>
-    	</div>
+      	<div class="six wide field">
+      		<label>Course Credits</label>
+      		<div class="ui input focus six wide field">
+      			<input class="course_credits" id="ccredits" type="number" name="course_credits">
+      		</div>
+      	</div>
 
-    	<div class="fields">
-    		<div class="three wide field">
+
+    	<div class="six wide field">
+    		<div class="six wide field">
     			<label>Course Lecture</label>
     			<div class="ui input focus">
-    				<input id="clecture{{ forloop.counter }}" type="number" name="course_lecture{{ forloop.counter }}">
+    				<input class="course_lecture" id="clecture" type="number" name="course_lecture">
     			</div>
     		</div>
 
-    		<div class="three wide field">
+    		<div class="six wide field">
     			<label>Course Tutorials</label>
     			<div class="ui input focus">
-    				<input id="ctutorial{{ forloop.counter }}" type="number" name="course_tutorials{{ forloop.counter }}">
+    				<input class="course_tutorials" id="ctutorial" type="number" name="course_tutorials">
     			</div>
     		</div>
 
-    		<div class="three wide field">
+    		<div class="six wide field">
     			<label>Course Practicals</label>
     			<div class="ui input focus">
-    				<input id="cpractical{{ forloop.counter }}" type="number" name="course_practical{{ forloop.counter }}">
+    				<input class="course_practical" id="cpractical" type="number" name="course_practical">
     			</div>
     		</div>
 
-    		<div class="three wide field">
+    		<div class="six wide field">
     			<label>Course Discussions</label>
     			<div class="ui input focus">
-    				<input id="cdiscussion{{ forloop.counter }}" type="number" name="course_discussion{{ forloop.counter }}">
+    				<input class="course_discussion" id="cdiscussion" type="number" name="course_discussion">
     			</div>
     		</div>
     	</div>
@@ -93,74 +95,113 @@
 
     {% endfor %}
 
-		<div class="testclass ui primary button" name="button">add Curriculum</div>
+		<div class="testclass1" name="button">add Curriculum</div>
 
   </form>
 
 
-
-
-
-
-
   <script type="text/javascript">
+    // alert("one");
     $(document).ready(function(){
-  		$('.testclass').on('click',function(e){
+      $('.testclass1').on('click',function(e){
+        alert("one");
+        alert("0");
+        var batch = parseInt(document.getElementById("batch").value);
+        var sem = parseInt(document.getElementById("semester").value);
         var tnc = parseInt(document.getElementById("numberofcourses").value);
-        for(var i=1;i<=tnc;i++){
-          alert("one"+i);
-          var courseid = document.getElementById("cid"+i).value;
-    			var coursetype = (document.getElementById("ctype"+i).value);
-          var coursename = (document.getElementById("cname"+i).value);
-          var coursecredits = parseInt(document.getElementById("ccredits"+i).value);
-          var courselecture = parseInt(document.getElementById("clecture"+i).value);
-          var coursetutorial = parseInt(document.getElementById("ctutorial"+i).value);
-          var coursepractical = parseInt(document.getElementById("cpractical"+i).value);
-          var coursediscussion = parseInt(document.getElementById("cdiscussion"+i).value);
-
-          var course_idorg = "course_id"+i;
-          var course_typrorg = "course_type"+i;
-          var course_name = "course"+i;
-          var course_credits = "course_credits"+i;
-          var course_lecture = "course_lecture"+i;
-          var course_tutorials = "course_tutorials"+i;
-          var course_practical = "course_practical"+i;
-          var course_discussion = "course_discussion"+i;
+        var courseid = document.getElementsByClassName("course_id");
+        alert("1");
+        var coursetype = document.getElementsByClassName("course_type");
+        var coursename = document.getElementsByClassName("course");
+        var coursecredits =document.getElementsByClassName("course_credits");
+        var courselecture =document.getElementsByClassName("course_lecture");
+        var coursetutorial =document.getElementsByClassName("course_tutorials");
+        var coursepractical =document.getElementsByClassName("course_practical");
+        var coursediscussion =document.getElementsByClassName("course_discussion");
 
 
+        alert("fdf");
 
-    			$.ajax({
-    				type:"POST",
-    		        url: "/add_curriculum_course/",
-    		        data:{
-                  course_idorg:courseid,
-                  course_typrorg:coursetype,
+          $.ajax({
+            type:"POST",
+                url: "/add_curriculum_course/",
+                data:{
+                  batch:batch,
+                  semester:sem,
+                  numberofcourses:tnc,
+                  course_id:courseid,
+                  course_type:coursetype,
                   course_name:coursename,
                   course_credits:coursecredits,
                   course_lecture:courselecture,
                   course_tutorials:coursetutorial,
                   course_practical:coursepractical,
                   course_discussion:coursediscussion,
-    		          csrfmiddlewaretoken: '{{ csrf_token }}'
-    		        },
+                  csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
                 success: function( data )
-    		        {
-                  $('#addcurr').hide();
-    		        	$(".new").show();
-    		        	$(".new").html(data.d);
-    		        }
-    			});
-      }
-  		});
-  	});
-
-  </script>
-
-  <script type="text/javascript">
-
-    $('.testclass').click(function(){
-        $('.4').addClass('completed');
-        $('.4').removeClass('active');
+                {
+                  alert("Courses Added !!");
+                }
+          });
       });
+    });
+
   </script>
+
+    <!-- <script type="text/javascript">
+      alert("fuck");
+      $(document).ready(function(){
+    		$('.testclass1').on('click',function(e){
+          alert("0");
+          var batch = parseInt(document.getElementById("batch").value);
+          var sem = parseInt(document.getElementById("semester").value);
+          var tnc = parseInt(document.getElementById("numberofcourses").value);
+          var courseid = document.getElementsByName("course_id");
+          alert("1");
+      		var coursetype = (document.getElementsByName("course_type");
+          var coursename = (document.getElementsByName("course");
+          var coursecredits =(document.getElementsByName("course_credits");
+          var courselecture =(document.getElementsByName("course_lecture");
+          var coursetutorial =(document.getElementsByName("course_tutorials");
+          var coursepractical =(document.getElementsByName("course_practical");
+          var coursediscussion =(document.getElementsByName("course_discussion");
+
+
+          alert("fdf");
+
+      			$.ajax({
+      				type:"POST",
+      		        url: "/add_curriculum_course/",
+      		        data:{
+                    batch:batch,
+                    semester:sem,
+                    numberofcourses:tnc,
+                    course_id:courseid,
+                    course_type:coursetype,
+                    course_name:coursename,
+                    course_credits:coursecredits,
+                    course_lecture:courselecture,
+                    course_tutorials:coursetutorial,
+                    course_practical:coursepractical,
+                    course_discussion:coursediscussion,
+      		          csrfmiddlewaretoken: '{{ csrf_token }}'
+      		        },
+                  success: function( data )
+      		        {
+      		        	alert("Courses Added !!");
+      		        }
+      			});
+    		});
+    	});
+
+    </script> -->
+
+    <script type="text/javascript">
+     $('.testclass1').click(function(){
+         $('.4').addClass('completed');
+         $('.4').removeClass('active');
+       });
+   </script>
+
 {% endblock %}

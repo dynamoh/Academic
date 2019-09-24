@@ -6,24 +6,24 @@
 
   <form id="addbatch" class="batch_semester ui form"  method="post">{% csrf_token %}
 
-	<!-- <div class="field">
-		<h1>Add Batch's Semester</h1>
-	</div> -->
+    	<div class="field">
+    		<h1>Add Batch's Semester</h1>
+    	</div>
 
-  <input type="text" name="programme" id="prog" value="{{btech.programme}}" hidden="true">
-	<input type="number" name="batch" id="batc" value="{{btech.batch}}" hidden="true">
+      <input type="text" name="programme" id="prog" value="{{programme}}">
+    	<input type="number" name="batch" id="batc" value="{{batch}}">
 
       <div class="field">
         <label><h3 class="ui dividing header">Semester</h3></label>
         <div class="ui input focus three wide field">
-          <input id="sem" type="number" name="semester">
+          <input id="sem" type="number" value="{{semester}}" name="semester">
         </div>
       </div>
 
       <div class="field">
         <label><h3 class="ui dividing header">Total Courses</h3></label>
         <div class="ui input focus three wide field">
-          <input id="totalCourses" type="number" name="total_number_of_courses">
+          <input id="totalCourses" type="number" value="0" name="total_number_of_courses">
         </div>
       </div>
 
@@ -33,26 +33,26 @@
           <div class="three wide field">
             <label>Core Courses</label>
             <div class="ui input focus">
-              <input id="profcore" type="number" name="professional_core_courses">
+              <input id="profcore" type="number" value="0" name="professional_core_courses">
             </div>
           </div>
 
           <div class="three wide field">
             <label>Elective Courses</label>
-            <input id="profelective" type="number" name="professional_elective_courses">
+            <input id="profelective" type="number" value="0" name="professional_elective_courses">
           </div>
 
           <div class="three wide field">
             <label >Project Courses</label>
             <div class="ui input focus">
-              <input id="profproject" type="number" name="professional_project_courses">
+              <input id="profproject" type="number" value="0" name="professional_project_courses">
             </div>
           </div>
 
           <div class="three wide field">
             <label>Lab Courses</label>
             <div class="ui input focus">
-              <input id="proflab" type="number" name="professional_lab_courses">
+              <input id="proflab" type="number" value="0" name="professional_lab_courses">
             </div>
           </div>
         </div>
@@ -64,14 +64,14 @@
           <div class="six wide field">
             <label>Engineering Science Courses</label>
             <div class="ui input focus">
-              <input id="es" type="number" name="escourses">
+              <input id="es" type="number" value="0" name="escourses">
             </div>
           </div>
 
           <div class="six wide field">
             <label>Natural Science Courses</label>
             <div class="ui input focus">
-              <input id="ns" type="number" name="nscourses">
+              <input id="ns" type="number" value="0" name="nscourses">
             </div>
           </div>
         </div>
@@ -80,14 +80,14 @@
           <div class="six wide field">
             <label>Humanities Courses</label>
             <div class="ui input focus">
-              <input id="hs" type="number" name="hscourses">
+              <input id="hs" type="number" value="0" name="hscourses">
             </div>
           </div>
 
           <div class="six wide field">
             <label>Design Courses</label>
             <div class="ui input focus">
-              <input id="ds" type="number" name="dscourses">
+              <input id="ds" type="number" value="0" name="dscourses">
             </div>
           </div>
         </div>
@@ -96,14 +96,14 @@
           <div class="six wide field">
             <label>Manufacturing Courses</label>
             <div class="ui input focus">
-              <input id="mn" type="number" name="mncourses">
+              <input id="mn" type="number" value="0" name="mncourses">
             </div>
           </div>
 
           <div class="six wide field">
             <label>Management Science Courses</label>
             <div class="ui input focus">
-              <input id="ms" type="number" name="mscourses">
+              <input id="ms" type="number" value="0" name="mscourses">
             </div>
           </div>
         </div>
@@ -118,20 +118,7 @@
       </div>
 
 
-
-	<!-- <div class="field">
-		<label><h3 class="ui dividing header">Programme</h3></label>
-		<select name="programme" class="ui fluid dropdown three wide field">
-			<option value="BTech">B.Tech</option>
-			<option value="BDes">B.Des</option>
-			<option value="MDes">M.Des</option>
-			<option value="MTech">M.Tech</option>
-			<option value="Phd">PhD</option>
-		</select>
-	</div> -->
-
-
-  <div class="testclass ui primary button" name="button">add semester</div>
+  <div class="testclass2" name="button">add semester</div>
 
   </form>
 
@@ -140,11 +127,54 @@
   </div>
 
 
-
   <script type="text/javascript">
+    // alert("one");
     $(document).ready(function(){
-  		$('.testclass').on('click',function(e){
-        // alert("one");
+      alert("asds");
+      $('.testclass1').on('click',function(e){
+        alert("one");
+        alert("0");
+        var batch = parseInt(document.getElementById("batch").value);
+        var sem = parseInt(document.getElementById("semester").value);
+        var tnc = parseInt(document.getElementById("numberofcourses").value);
+        // var courseid = document.getElementsByClassName("course_id");
+        // alert("1");
+        // var coursetype = document.getElementsByClassName("course_type");
+        // var coursename = document.getElementsByClassName("course");
+        // var coursecredits =document.getElementsByClassName("course_credits");
+        // var courselecture =document.getElementsByClassName("course_lecture");
+        // var coursetutorial =document.getElementsByClassName("course_tutorials");
+        // var coursepractical =document.getElementsByClassName("course_practical");
+        // var coursediscussion =document.getElementsByClassName("course_discussion");
+
+
+        alert("fdf");
+
+          $.ajax({
+            type:"POST",
+                url: "/add_curriculum_course/",
+                data:{
+                  batch:batch,
+                  semester:sem,
+                  numberofcourses:tnc,
+                  
+                  csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function( data )
+                {
+                  alert("Courses Added !!");
+                }
+          });
+      });
+    });
+
+  </script>
+  <!-- <script type="text/javascript">
+    alert("dsa")
+    $(document).ready(function(){
+      alert("ads");
+  		$('.testclass2').on('click',function(e){
+        alert("one");
         var programme = document.getElementById("prog").value;
   			var batch = parseInt(document.getElementById("batc").value);
         var sem = parseInt(document.getElementById("sem").value);
@@ -159,7 +189,7 @@
         var ds = parseInt(document.getElementById("ds").value);
         var mn = parseInt(document.getElementById("mn").value);
         var ms = parseInt(document.getElementById("ms").value);
-        // alert(ms);
+        alert(ms);
         // var pbi = document.getElementById("pbi").value;
         // alert(pbi);
   			$.ajax({
@@ -192,14 +222,6 @@
   		});
   	});
 
-  </script>
+  </script> -->
 
-  <script type="text/javascript">
-
-    $('.testclass').click(function(){
-        $('.3').addClass('completed');
-        $('.3').removeClass('active');
-        $('.4').addClass('active');
-      });
-  </script>
 {% endblock %}

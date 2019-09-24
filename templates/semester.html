@@ -1,0 +1,72 @@
+{% extends "testhtml.html" %}
+
+{% block content %}
+
+  <div id="choosesemester">
+    <form method="post">
+      {% csrf_token %}
+      <div class="fields">
+        <div class="field">
+          <div class="six wide field">
+            <label> <h3>Select Semester</h3> </label><br>
+            <select name="sem" id="sem" class="ui fluid dropdown six wide field">
+              <option value="1">1</option>
+              <option value="2"> 2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
+          </div><br>
+        </div>
+
+
+          <input type="text" name="programme" id="prog" value="{{btech.programme}}" hidden="true">
+        	<input type="number" name="batch" id="batc" value="{{btech.batch}}" hidden="true">
+
+
+        <div class="field">
+          <div class="testclass ui primary button" name="button">submit</div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="newdiv">
+
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+  		$('.testclass').on('click',function(e){
+        // alert("one");
+  			var semester = document.getElementById("sem").value;
+        var programme = document.getElementById("prog").value;
+  			var batch = parseInt(document.getElementById("batc").value);
+        alert(semester);
+  			$.ajax({
+  				type:"POST",
+  		        url: "/selectsem/",
+  		        data:{
+                programme:programme,
+                batch : batch,
+                sem:semester,
+  		          csrfmiddlewaretoken: '{{ csrf_token }}'
+  		        },
+  		        success: function( data )
+  		        {
+                $('#choosesemester').hide();
+  		        	$(".newdiv").show();
+  		        	$(".newdiv").html(data.d);
+  		        }
+  			});
+  		});
+  	});
+
+  </script>
+
+
+{% endblock %}

@@ -35,7 +35,7 @@ def get_course_list(request):
 # Select Programme to add curriculum
 
 def programme(request):
-    return render(request,'container.html')
+    return render(request,'completedmenutest.html')
 
 def selectProgramme(request):
     programme = request.POST.get('programme')
@@ -87,7 +87,7 @@ def add_btech_curriculum(request):
     print(btech_curr)
 
     try:
-        data = render_to_string('add_batch_semester.html',{'btech':btech_curr},
+        data = render_to_string('semester.html',{'btech':btech_curr},
                                  request)
         print("abcd")
         obj = json.dumps({'d' : data})
@@ -97,7 +97,19 @@ def add_btech_curriculum(request):
         return HttpResponse("fghjk")
 
 
-
+def select_semester(request):
+    semester = request.POST.get('sem')
+    programme = request.POST.get('programme')
+    batch = request.POST.get('batch')
+    try:
+        data = render_to_string('add_batch_semester.html',{'semester':semester,'batch':batch,'programme':programme},
+                                 request)
+        print("Sem Selected")
+        obj = json.dumps({'d' : data})
+        # print("gscdgascdbscabdfcasbfcdnabcfb")
+        return HttpResponse(obj, content_type = 'application/json')
+    except:
+        return HttpResponse("fghjk")
 
 # def add_btech_curriculum1(request):
 #     if request.method =='POST':
@@ -191,8 +203,11 @@ def add_batch_semester(request):
     elif int(sem)==8:
         obj = BtechCurriculum.objects.all().filter(batch=batch).update(sem8=batch_sem)
 
+    context =  get_course_list(request)
+    print(context)
+
     try:
-        data = render_to_string('add_curriculum_course.html',{'batch':batch_sem,'course_list': get_course_list(request),'range':range(int(tcourses))},
+        data = render_to_string('add_curriculum_course.html',{'batch':batch_sem,'course_list':context,'range':range(int(tcourses))},
                                  request)
         print("abcd")
         obj = json.dumps({'d' : data})
@@ -267,32 +282,56 @@ def add_batch_semester(request):
 #     return render(request,'add_curriculum_course.html',context)
 
 def add_curriculum_course(request):
+    print("dfdsf course")
     if request.method=='POST':
-        sem = request.POST['semester']
-        course = request.POST['course']
-        course_id = request.POST['course_id']
-        course_type = request.POST['course_type']
-        course_credits=request.POST['course_credits']
-        course_lecture = request.POST['course_lecture']
-        course_tutorials = request.POST['course_tutorials']
-        course_practical = request.POST['course_practical']
-        course_discussion= request.POST['course_discussion']
-        obj = BatchSemester.objects.all().filter(semester=sem).filter(batch=2018).first()
-        obj2 = Course.objects.filter(course_name=course).first()
-        print(obj)
-        CurriculumCourse.objects.create(
-        semester=obj,
-        curr_course=obj2,
-        course_id=course_id,
-        course_type=course_type,
-        course_credits=course_credits,
-        course_lecture=course_lecture,
-        course_tutorial=course_tutorials,
-        course_practical=course_practical,
-        course_discussion=course_discussion
-        )
+        sem = request.POST.get('semester')
+        batch = request.POST.get('batch')
+        tnc = request.POST.get('numberofcourses')
+        course = request.POST.getlist('course')
+        course_id = request.POST.getlist('course_id')
+        course_type = request.POST.getlist('course_type')
+        course_credits=request.POST.getlist('course_credits')
+        course_lecture = request.POST.getlist('course_lecture')
+        course_tutorials = request.POST.getlist('course_tutorials')
+        course_practical = request.POST.getlist('course_practical')
+        course_discussion= request.POST.getlist('course_discussion')
+
+        print(course_lecture,course_credits)
+
+        values_len = int(tnc)
+        print(values_len)
+        obj = BatchSemester.objects.all().filter(semester=sem).filter(batch=batch).first()
+        for i in range(values_len):
+            for key,values in request.POST.lists():
+                print(i)
+                if(key == 'course'):
+                    obj2 = Course.objects.filter(course_name=values[i]).first()
+                    print(obj)
+                if(key == 'course_id'):
+                    course_id=values[i]
+                    print(course_id)
+                # CurriculumCourse.objects.create(
+                # semester=obj,
+                # curr_course=obj2,
+                # course_id=course_id[i-1],
+                # course_type=course_type[i-1],
+                # course_credits=course_credits[i-1],
+                # course_lecture=course_lecture[i-1],
+                # course_tutorial=course_tutorials[i-1],
+                # course_practical=course_practical[i-1],
+                # course_discussion=course_discussion[i-1]
+                # )
 
 
+        try:
+            data = render_to_string('semester.html',{'semester':sem},
+                                     request)
+            # print("abcd")
+            obj = json.dumps({'d' : data})
+            print("gscdgascdbscabdfcasbfcdnabcfb")
+            return HttpResponse(obj, content_type = 'application/json')
+        except:
+            return HttpResponse("fghjk")
 
 
 
@@ -304,7 +343,7 @@ def add_curriculum_course(request):
         # CurriculumCourse.objects.all().filter(semester=sem).order_by('batch').update(semester=obj1)
         # # courses = Course.objects.all()
         # context = get_course_list(request)
-    return render(request,'add_curriculum_course.html',get_course_list(request))
+    # return render(request,'add_curriculum_course.html',get_course_list(request))
 
 def view_curriculum(request):
     if request.method == 'POST':

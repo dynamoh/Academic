@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^view_curriculum/', views.view_curriculum,name="view_curriculums"),
     url(r'^test/',views.testajax,name="test"),
     url(r'^select/',views.selectProgramme,name="select"),
+    url(r'^selectsem/',views.select_semester,name="selectsem"),
     url(r'^Academics/',views.programme,name="pro"),
 ]
