@@ -1,7 +1,5 @@
 {% extends "testhtml.html" %}
-
 {% load static %}
-
 {% block content %}
 
   <form id="addbatch" class="batch_semester ui form"  method="post">{% csrf_token %}
@@ -10,8 +8,8 @@
     		<h1>Add Batch's Semester</h1>
     	</div>
 
-      <input type="text" name="programme" id="prog" value="{{programme}}">
-    	<input type="number" name="batch" id="batc" value="{{batch}}">
+      <input type="text" name="programme" id="prog" value="{{programme}}" hidden="true">
+    	<input type="number" name="batch" id="batc" value="{{batch}}" hidden="true">
 
       <div class="field">
         <label><h3 class="ui dividing header">Semester</h3></label>
@@ -118,7 +116,7 @@
       </div>
 
 
-  <div class="testclass2" name="button">add semester</div>
+      <div class="testclass2" name="button">add semester</div>
 
   </form>
 
@@ -128,47 +126,69 @@
 
 
   <script type="text/javascript">
-    // alert("one");
+    // alert("dsa")
     $(document).ready(function(){
-      alert("asds");
-      $('.testclass1').on('click',function(e){
+      alert("ads");
+  		$('.testclass2').on('click',function(e){
         alert("one");
-        alert("0");
-        var batch = parseInt(document.getElementById("batch").value);
-        var sem = parseInt(document.getElementById("semester").value);
-        var tnc = parseInt(document.getElementById("numberofcourses").value);
-        // var courseid = document.getElementsByClassName("course_id");
-        // alert("1");
-        // var coursetype = document.getElementsByClassName("course_type");
-        // var coursename = document.getElementsByClassName("course");
-        // var coursecredits =document.getElementsByClassName("course_credits");
-        // var courselecture =document.getElementsByClassName("course_lecture");
-        // var coursetutorial =document.getElementsByClassName("course_tutorials");
-        // var coursepractical =document.getElementsByClassName("course_practical");
-        // var coursediscussion =document.getElementsByClassName("course_discussion");
-
-
-        alert("fdf");
-
-          $.ajax({
-            type:"POST",
-                url: "/add_curriculum_course/",
-                data:{
-                  batch:batch,
-                  semester:sem,
-                  numberofcourses:tnc,
-                  
-                  csrfmiddlewaretoken: '{{ csrf_token }}'
-                },
-                success: function( data )
-                {
-                  alert("Courses Added !!");
-                }
-          });
-      });
-    });
+        var programme = document.getElementById("prog").value;
+  			var batch = parseInt(document.getElementById("batc").value);
+        var sem = parseInt(document.getElementById("sem").value);
+        var totalcourses = parseInt(document.getElementById("totalCourses").value);
+        var profcore = parseInt(document.getElementById("profcore").value);
+        var profelective = parseInt(document.getElementById("profelective").value);
+        var profproject = parseInt(document.getElementById("profproject").value);
+        var proflab = parseInt(document.getElementById("proflab").value);
+        var es = parseInt(document.getElementById("es").value);
+        var ns = parseInt(document.getElementById("ns").value);
+        var hs = parseInt(document.getElementById("hs").value);
+        var ds = parseInt(document.getElementById("ds").value);
+        var mn = parseInt(document.getElementById("mn").value);
+        var ms = parseInt(document.getElementById("ms").value);
+        alert(ms);
+        // var pbi = document.getElementById("pbi").value;
+        // alert(pbi);
+  			$.ajax({
+  				type:"POST",
+  		        url: "/add_batch_semester/",
+  		        data:{
+                programme:programme,
+                batch : batch,
+                semester:sem,
+                total_number_of_courses:totalcourses,
+                professional_core_courses:profcore,
+                professional_elective_courses:profelective,
+                professional_project_courses:profproject,
+                professional_lab_courses: proflab,
+                escourses: es,
+                hscourses :hs,
+                dscourses:ds,
+                mncourses :mn,
+                nscourses :ns,
+                mscourses:ms,
+  		          csrfmiddlewaretoken: '{{ csrf_token }}'
+  		        },
+              success: function( data )
+  		        {
+                $('#addbatch').hide();
+  		        	$(".ndiv").show();
+  		        	$(".ndiv").html(data.d);
+  		        }
+  			});
+  		});
+  	});
 
   </script>
+
+
+    <script type="text/javascript">
+
+      $('.testclass2').click(function(){
+          $('.3').addClass('completed');
+          $('.3').removeClass('active');
+          $('.4').addClass('active');
+        });
+    </script>
   <!-- <script type="text/javascript">
     alert("dsa")
     $(document).ready(function(){

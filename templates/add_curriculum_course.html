@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-  <form method="post" class="ui form">
+  <form method="post" id="addcourse" class="ui form">
     {% csrf_token %}
 	<div class="field">
 		<h1>Add Course to Curriculum</h1>
@@ -10,27 +10,28 @@
 
 	<!-- <div class="field">
 		<label>Semester</label>
-		<div class="ui input focus six wide field">
+		<div class="ui input focus three wide field">
 			<input type="number" name="semester">
 	</div> -->
 
   <input id="semester" type="number" name="semester" value="{{batch.semester}}" hidden="True" >
   <input type="number" id="batch" name="batch" value="{{batch.batch}}" hidden="True">
-  <input id="numberofcourses" type="number" name="numberofcourses" value="{{batch.total_number_of_courses}}" hidden=>
+  <input id="numberofcourses" type="number" name="numberofcourses" value="{{batch.total_number_of_courses}}" hidden="True">
 
   {% for course in range %}
 
-      	<div class="six wide field">
+      <div class="fields">
+      	<div class="three wide field">
       		<label>Course ID</label>
-      		<div class="ui input focus six wide field">
+      		<div class="ui input focus">
       			<input id="cid" class="course_id" type="text" name="course_id">
       		</div>
       	</div>
 
 
-      	<div class="six wide field">
+      	<div class="three wide field">
       		<label>Course Type</label>
-      		<select id="ctype" name="course_type" class="course_type ui fluid dropdown six wide field">
+      		<select id="ctype" name="course_type" class="course_type ui fluid dropdown">
       		  <option value="Core">Professional Core</option>
       		  <option value="Elective">Professional Elective</option>
       		  <option value="Lab">Professional Lab</option>
@@ -44,47 +45,47 @@
       		</select>
       	</div>
 
-      	<div class="six wide field">
+      	<div class="three wide field">
       		<label>Course</label>
-      		<select id="cname{{ forloop.counter }}" name="course" class="course six wide field">
+      		<select id="cname{{ forloop.counter }}" name="course" class="course">
       		  {% for cours in course_list %}
-      			<option value="{{cours.course_name}}">{{cours.course_name}}</option>
+      			<option value="{{cours.Course.course_name}}">{{cours.Course.course_name}}</option>
       		  {% endfor %}
       		</select>
       		<!-- <input type="text" name="course"><br><br> -->
       	</div>
 
-      	<div class="six wide field">
+      	<div class="three wide field">
       		<label>Course Credits</label>
-      		<div class="ui input focus six wide field">
+      		<div class="ui input focus">
       			<input class="course_credits" id="ccredits" type="number" name="course_credits">
       		</div>
       	</div>
+      </div>
 
-
-    	<div class="six wide field">
-    		<div class="six wide field">
+    	<div class="fields">
+    		<div class="three wide field">
     			<label>Course Lecture</label>
     			<div class="ui input focus">
     				<input class="course_lecture" id="clecture" type="number" name="course_lecture">
     			</div>
     		</div>
 
-    		<div class="six wide field">
+    		<div class="three wide field">
     			<label>Course Tutorials</label>
     			<div class="ui input focus">
     				<input class="course_tutorials" id="ctutorial" type="number" name="course_tutorials">
     			</div>
     		</div>
 
-    		<div class="six wide field">
+    		<div class="three wide field">
     			<label>Course Practicals</label>
     			<div class="ui input focus">
     				<input class="course_practical" id="cpractical" type="number" name="course_practical">
     			</div>
     		</div>
 
-    		<div class="six wide field">
+    		<div class="three wide field">
     			<label>Course Discussions</label>
     			<div class="ui input focus">
     				<input class="course_discussion" id="cdiscussion" type="number" name="course_discussion">
@@ -98,6 +99,10 @@
 		<div class="testclass1" name="button">add Curriculum</div>
 
   </form>
+
+  <div class="newdiv3">
+
+  </div>
 
 
   <script type="text/javascript">
@@ -118,9 +123,19 @@
         var coursetutorial =document.getElementsByClassName("course_tutorials");
         var coursepractical =document.getElementsByClassName("course_practical");
         var coursediscussion =document.getElementsByClassName("course_discussion");
-
+        alert(coursecredits[0].value);
 
         alert("fdf");
+
+        var courseid1 =JSON.stringify( { courseid: courseid })
+        alert("1");
+        var coursetype1 =JSON.stringify( { coursetype: coursetype })
+        var coursename1 =JSON.stringify( { coursename: coursename })
+        var coursecredits1 =JSON.stringify( { coursecredits: coursecredits })
+        var courselecture1 =JSON.stringify( { courselecture: courselecture })
+        var coursetutorial1 =JSON.stringify( { coursetutorial: coursetutorial })
+        var coursepractical1 =JSON.stringify( { coursepractical: coursepractical })
+        var coursediscussion1 =JSON.stringify( { coursediscussion: coursediscussion })
 
           $.ajax({
             type:"POST",
@@ -129,19 +144,22 @@
                   batch:batch,
                   semester:sem,
                   numberofcourses:tnc,
-                  course_id:courseid,
-                  course_type:coursetype,
-                  course_name:coursename,
-                  course_credits:coursecredits,
-                  course_lecture:courselecture,
-                  course_tutorials:coursetutorial,
-                  course_practical:coursepractical,
-                  course_discussion:coursediscussion,
+                  course_id:courseid1,
+                  course_type:coursetype1,
+                  course_name:coursename1,
+                  course_credits:coursecredits1,
+                  course_lecture:courselecture1,
+                  course_tutorials:coursetutorial1,
+                  course_practical:coursepractical1,
+                  course_discussion:coursediscussion1,
                   csrfmiddlewaretoken: '{{ csrf_token }}'
                 },
                 success: function( data )
                 {
                   alert("Courses Added !!");
+                  $('#addcourse').hide();
+    		        	$(".newdiv3").show();
+    		        	$(".newdiv3").html(data.d);
                 }
           });
       });

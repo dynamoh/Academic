@@ -35,7 +35,7 @@
     </form>
   </div>
 
-  <div class="newdiv">
+  <div class="newdiv1">
 
   </div>
 
@@ -46,7 +46,7 @@
   			var semester = document.getElementById("sem").value;
         var programme = document.getElementById("prog").value;
   			var batch = parseInt(document.getElementById("batc").value);
-        alert(semester);
+        // alert(semester);
   			$.ajax({
   				type:"POST",
   		        url: "/selectsem/",
@@ -59,8 +59,8 @@
   		        success: function( data )
   		        {
                 $('#choosesemester').hide();
-  		        	$(".newdiv").show();
-  		        	$(".newdiv").html(data.d);
+  		        	$(".newdiv1").show();
+  		        	$(".newdiv1").html(data.d);
   		        }
   			});
   		});

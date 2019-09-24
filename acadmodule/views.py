@@ -287,40 +287,40 @@ def add_curriculum_course(request):
         sem = request.POST.get('semester')
         batch = request.POST.get('batch')
         tnc = request.POST.get('numberofcourses')
-        course = request.POST.getlist('course')
-        course_id = request.POST.getlist('course_id')
-        course_type = request.POST.getlist('course_type')
-        course_credits=request.POST.getlist('course_credits')
-        course_lecture = request.POST.getlist('course_lecture')
-        course_tutorials = request.POST.getlist('course_tutorials')
-        course_practical = request.POST.getlist('course_practical')
-        course_discussion= request.POST.getlist('course_discussion')
-
-        print(course_lecture,course_credits)
-
-        values_len = int(tnc)
-        print(values_len)
-        obj = BatchSemester.objects.all().filter(semester=sem).filter(batch=batch).first()
-        for i in range(values_len):
-            for key,values in request.POST.lists():
-                print(i)
-                if(key == 'course'):
-                    obj2 = Course.objects.filter(course_name=values[i]).first()
-                    print(obj)
-                if(key == 'course_id'):
-                    course_id=values[i]
-                    print(course_id)
-                # CurriculumCourse.objects.create(
-                # semester=obj,
-                # curr_course=obj2,
-                # course_id=course_id[i-1],
-                # course_type=course_type[i-1],
-                # course_credits=course_credits[i-1],
-                # course_lecture=course_lecture[i-1],
-                # course_tutorial=course_tutorials[i-1],
-                # course_practical=course_practical[i-1],
-                # course_discussion=course_discussion[i-1]
-                # )
+        # course = request.POST.getlist('course')
+        # course_id = request.POST.getlist('course_id')
+        # course_type = request.POST.getlist('course_type')
+        # course_credits=request.POST.getlist('course_credits')
+        # course_lecture = request.POST.getlist('course_lecture')
+        # course_tutorials = request.POST.getlist('course_tutorials')
+        # course_practical = request.POST.getlist('course_practical')
+        # course_discussion= request.POST.getlist('course_discussion')
+        #
+        # print(course_lecture,course_credits)
+        #
+        # values_len = int(tnc)
+        # print(values_len)
+        # obj = BatchSemester.objects.all().filter(semester=sem).filter(batch=batch).first()
+        # for i in range(values_len):
+        #     for key,values in request.POST.lists():
+        #         print(i)
+        #         if(key == 'course'):
+        #             obj2 = Course.objects.filter(course_name=values[i]).first()
+        #             print(obj)
+        #         if(key == 'course_id'):
+        #             course_id=values[i]
+        #             print(course_id)
+        #         # CurriculumCourse.objects.create(
+        #         # semester=obj,
+        #         # curr_course=obj2,
+        #         # course_id=course_id[i-1],
+        #         # course_type=course_type[i-1],
+        #         # course_credits=course_credits[i-1],
+        #         # course_lecture=course_lecture[i-1],
+        #         # course_tutorial=course_tutorials[i-1],
+        #         # course_practical=course_practical[i-1],
+        #         # course_discussion=course_discussion[i-1]
+        #         # )
 
 
         try:

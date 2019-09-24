@@ -5,7 +5,7 @@
 <div>
     <form id="addcurriculum" class="btech_curriculum ui form" method="post">{% csrf_token %}
 
-      	<div id="addcurr">
+      	<!-- <div id="addcurr"> -->
 
             <!-- <div class="field">
         		<h1>Add Curriculum Credits for B-tech.</h1>
@@ -185,7 +185,7 @@
   		        },
               success: function( data )
   		        {
-                $('#addcurr').hide();
+                $('#addcurriculum').hide();
   		        	$(".new").show();
   		        	$(".new").html(data.d);
   		        }
